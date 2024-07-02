@@ -17,11 +17,17 @@ public abstract class Conta implements IConta {
 
 	@Override
 	public void sacar(double valor) {
+		if (valor > saldo) {
+			throw new IllegalArgumentException("Saldo insuficiente para saque");
+		}
 		saldo -= valor;
 	}
 
 	@Override
 	public void depositar(double valor) {
+		if (valor < 0) {
+			throw new IllegalArgumentException("Valor de depósito deve ser positivo");
+		}
 		saldo += valor;
 	}
 
